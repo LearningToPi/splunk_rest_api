@@ -50,7 +50,8 @@ class PollingService:
         ''' Write the data to the console for Splunk to pickup '''
         err_message = False if error is None else f"{error.__class__.__name__}: {error}"
         with self._console_lock:
-            print(json.dumps({'endpoint': endpoint.get('hostname'), 'name': api.get('name'), 'api': api.get('path'), 'error': err_message, 'data': filter_data(data, api.get('filter', None))}))
+            print(json.dumps({'endpoint': endpoint.get('hostname'), 'name': api.get('name'), 'api': api.get('path'), 'error': err_message, 'data': filter_data(data, api.get('filter', None))},
+                             sort_keys=True, indent=4))
 
     def _polling_thread(self):
         ''' Background thread for polling '''
