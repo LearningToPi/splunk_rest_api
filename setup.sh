@@ -9,12 +9,12 @@ source venv/bin/activate
 python3 -m pip install -r requirements.txt
 
 echo "Creating Splunk shell script..."
-echo "#!/bin/bash" > ../api_poller.sh
+echo "#!/bin/bash" > $SPLUNK_SCRIPTS_PATH/api_poller.sh
 GIT_PATH=`pwd`
 cd ..
 SPLUNK_SCRIPTS_PATH=`pwd`
-echo "source $GIT_PATH/venv/bin/activate" > ../api_poller.sh
-echo "python3 $GIT_PATH/scripts/api_poller.py $SPLUNK_SCRIPTS_PATH/settings.json" >> ../api_poller.sh
+echo "source $GIT_PATH/venv/bin/activate" > $SPLUNK_SCRIPTS_PATH/api_poller.sh
+echo "python3 $GIT_PATH/scripts/api_poller.py $SPLUNK_SCRIPTS_PATH/settings.json" >> $SPLUNK_SCRIPTS_PATH/api_poller.sh
 chmod +x $SPLUNK_SCRIPTS_PATH/api_poller.sh
 
 echo "================================"
